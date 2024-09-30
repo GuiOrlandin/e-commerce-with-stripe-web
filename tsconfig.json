@@ -11,7 +11,8 @@
     "skipLibCheck": true,
     "strictNullChecks": false,
     "allowImportingTsExtensions": true,
-    "emitDeclarationOnly": true
+    "emitDeclarationOnly": true,
+    "declaration": true
   },
   "include": ["src", "test"],
   "exclude": ["node_modules"]
