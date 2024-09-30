@@ -42,13 +42,20 @@ export default function Login() {
     queryKey: ["userInfo"],
 
     queryFn: async () => {
-      return axios
-        .get(
-          `https://e-commerce-with-stripe-api.vercel.app/user?userId=${data?.userId}`
-        )
-        .then((response) => response.data);
+      if (data?.userId) {
+        return axios
+          .get(
+            `https://e-commerce-with-stripe-api.vercel.app/user?userId=${data?.userId}`
+          )
+          .then((response) => response.data);
+      }
     },
   });
+
+  console.log(userInfo);
+  if (data) {
+    console.log(data.userId);
+  }
 
   function handleAuthenticate(
     userAuthenticateCredentialsDetails: UserCredentials

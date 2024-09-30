@@ -20,10 +20,12 @@ import { useNavigate } from "react-router-dom";
 import { productStore } from "../../store/productStore";
 import { GoSignIn } from "react-icons/go";
 import { userStore } from "../../store/userStore";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function SideBar() {
   const [buttonSelected, setButtonSelected] = useState<string>();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const products = productStore((state) => state.products);
   const clearCart = productStore((state) => state.clearCart);
   const user = userStore((state) => state.user);
@@ -36,6 +38,7 @@ export default function SideBar() {
   function handleLogout() {
     clearUser();
     clearCart();
+    queryClient.removeQueries({ queryKey: ["userInfo"] });
   }
 
   useEffect(() => {
